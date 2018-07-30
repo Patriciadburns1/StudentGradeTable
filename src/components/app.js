@@ -1,13 +1,31 @@
-import React from 'react';
-import '../assets/css/app.css';
+import React, {Component} from 'react';
+// import '../assets/css/app.css';
+import StudentData, {StudentDataContext} from './studentdata'; 
+import HomePage from './homepage'; 
+import { Route } from 'react-router-dom';
+import StudentList from './studentlist'; 
 
-const App = () => (
-    <div>
-        <div className="app">
-        
-            <h1>Welcome to React</h1>
-        </div>
-    </div>
-);
+class App extends Component{
+    constructor(props){
+        super(props); 
+    }
+    render(){
+    return(
+        <div> 
+        <StudentData> 
+            <StudentDataContext.Consumer> 
+                {(context) => (
+                <div>
+                     <Route exact path='/' component={HomePage}/> 
+                    <Route path='/student-list' component={StudentList}/>
+                </div> 
+                )}
+            </StudentDataContext.Consumer> 
+        </StudentData> 
+        </div> 
+    )     
+    }
+}
 
-export default App;
+export default App; 
+
