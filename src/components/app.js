@@ -4,6 +4,7 @@ import StudentData, {StudentDataContext} from './studentdata';
 import HomePage from './homepage'; 
 import { Route } from 'react-router-dom';
 import StudentList from './studentlist'; 
+import Nav from './nav'; 
 
 class App extends Component{
     constructor(props){
@@ -16,6 +17,7 @@ class App extends Component{
             <StudentDataContext.Consumer> 
                 {(context) => (
                 <div>
+                    <Nav/> 
                      <Route exact path='/' component={HomePage}/> 
                     <Route path='/student-list' component={StudentList}/>
                 </div> 
