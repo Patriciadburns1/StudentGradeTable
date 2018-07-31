@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-// import '../assets/css/app.css';
+import './assets/css/app.css';
 import StudentData, {StudentDataContext} from './studentdata'; 
 import HomePage from './homepage'; 
 import { Route } from 'react-router-dom';
 import StudentList from './studentlist'; 
 import Nav from './nav'; 
+import Form from './form'; 
 
 class App extends Component{
     constructor(props){
@@ -18,8 +19,14 @@ class App extends Component{
                 {(context) => (
                 <div>
                     <Nav/> 
-                     <Route exact path='/' component={HomePage}/> 
-                    <Route path='/student-list' component={StudentList}/>
+                     {/* <Route exact path='/' component={HomePage}/> 
+                    <Route path='/student-list' component={StudentList}/> */}
+                    <div className="container"> 
+                    <div className="row"> 
+                    <div className="col s9">  <StudentList/>  </div> 
+                    <div className="col s3" > <Form/> </div> 
+                    </div> 
+                    </div> 
                 </div> 
                 )}
             </StudentDataContext.Consumer> 

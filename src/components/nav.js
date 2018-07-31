@@ -5,10 +5,11 @@ const Nav = props => {
     return (
         <nav className="blue lighten-4">
             <div className="nav-wrapper">
-                <Link style={{paddingLeft: '8px'}} to='/' className="brand-logo"> Student Grade Table </Link>
-                <ul className="right" >
-                    <li> <Link to='/'> Home </Link> </li>
-                    <li> <Link to='/student-list'> Student Data </Link> </li> 
+                {/* <Link style={{paddingLeft: '8px'}} to='/' className="col s6 offset-s6"> Student Grade Table </Link> */}
+                <ul className="center" >
+                    {/* <li> <Link to='/'> Home </Link> </li> */}
+                    <li> Welcome Student! </li>
+                    {/* <li> <Link to='/student-list'> Student Data </Link> </li>  */}
                     {/* <li> <Link to='/choose-name'> Change Name </Link> </li>  */}
                 </ul>
             </div>

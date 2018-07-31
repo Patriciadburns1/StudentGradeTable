@@ -1,5 +1,4 @@
 import React, { Component, createContext } from "react";
-// import axios from 'axios';
 import firebase from '../firebase';
 
 
@@ -10,29 +9,34 @@ class StudentData extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            student: '',
-            course: '',
-            grade: ''
+            studentList:[]
+         
         }
+    }
+
+    componentDidUpdate() {
+        console.log("Our updated state with students", this.state.studentList);
     }
 
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
+            console.log("our snapshot", snapshot);
+            var studentList = [];
             snapshot.forEach(doc => {
                 console.log("doc", doc.data());
-                this.setState({
-                    student: doc.data.Student,
-                    course: doc.data.Course,
-                    grade: doc.data.Grade
-                })   
+                studentList.push(doc.data());
+               
+            });
+            console.log("access to this possible?", this);
+            this.setState({
+                studentList
             });
         });
 
     }
 
     render() {
-    
         return (
             <StudentDataContext.Provider value={this.state}>
                 {this.props.children}
