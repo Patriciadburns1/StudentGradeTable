@@ -15,26 +15,32 @@ class StudentData extends Component {
     }
 
     componentDidUpdate() {
-        console.log("Our updated state with students", this.state.studentList);
+        console.log("Our updated state with students on component did update", this.state.studentList);
     }
 
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
-            console.log("our snapshot", snapshot);
+            // console.log("our snapshot", snapshot);
             var studentList = [];
-            snapshot.forEach(doc => {
+            // snapshot.key;
+            snapshot.forEach(((doc, key) => {
                 console.log("doc", doc.data());
-                studentList.push(doc.data());
+                const data = doc.data();
+                data.id = doc.id;
+                studentList.push(data);
                
-            });
-            console.log("access to this possible?", this);
+            }));
             this.setState({
                 studentList
             });
         });
 
     }
+
+    // sendFormtoDataBase(){
+
+    // }
 
     render() {
         return (
