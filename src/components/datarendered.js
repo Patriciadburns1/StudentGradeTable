@@ -24,6 +24,18 @@ class DataRendered extends Component{
 
     }
 
+    updateData(context, index){
+        const{studentList}= context; 
+        var id =studentList[index].id; 
+
+        firebase.collection('Student Data').doc(id).update().then(function (id) {
+            console.log("this was updated", id);
+        })
+            .catch(function (error) {
+                console.error("this was not updated ", error);
+        });
+    }
+
     render(){
 
         return(
@@ -34,7 +46,7 @@ class DataRendered extends Component{
                         <td> {item.student} </td> 
                         <td> {item.course} </td> 
                         <td> {item.grade} </td>
-                        <td type="button" className="waves-effect waves-light btn cyan accent-3"> UPDATE </td> 
+                        <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.updateData.bind(this,context,index)}> UPDATE </td> 
                         <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.deleteData.bind(this, context, index)}> DELETE </td> 
                     </tr> 
        
