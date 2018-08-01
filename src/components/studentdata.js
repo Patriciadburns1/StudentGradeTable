@@ -21,20 +21,24 @@ class StudentData extends Component {
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
-            console.log("our snapshot", snapshot);
+            // console.log("our snapshot", snapshot);
             var studentList = [];
             snapshot.forEach(doc => {
                 console.log("doc", doc.data());
                 studentList.push(doc.data());
                
             });
-            console.log("access to this possible?", this);
+            // console.log("access to this possible?", this);
             this.setState({
                 studentList
             });
         });
 
     }
+
+    // sendFormtoDataBase(){
+
+    // }
 
     render() {
         return (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Nav = props => {
     return (
-        <nav className="blue lighten-4">
+        <nav className="cyan accent-4">
             <div className="nav-wrapper">
                 {/* <Link style={{paddingLeft: '8px'}} to='/' className="col s6 offset-s6"> Student Grade Table </Link> */}
                 <ul className="center" >
