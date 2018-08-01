@@ -17,7 +17,6 @@ class Form extends Component {
     }
 
     handleInputChange(event) {
-        event.preventDefault()
         const { value, name } = event.target;
         const { form } = this.state;
 
@@ -27,7 +26,6 @@ class Form extends Component {
             form: { ...form },
 
         })
-        console.log(this.state);
     }
 
     handleSubmitButton(e) {
@@ -39,10 +37,7 @@ class Form extends Component {
             grade: grade,
             student: student
         }
-        // const firestore= firebase.firestore(); 
-
-        console.log('Handle Submit:', this.state.form);
-
+       
         firebase.collection('Student Data').add(individualRecord).then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
         })
@@ -58,7 +53,7 @@ class Form extends Component {
 
     render() {
         const { course, student, grade } = this.state.form;
-        // console.log("this is state", this.state); 
+        
         return (
 
             <form onSubmit={this.handleSubmitButton.bind(this)}>

@@ -5,11 +5,18 @@ import firebase from '../firebase';
 
 class DataRendered extends Component{
 
+    constructor(props){
+        super(props);
+       
+    }
     
-    deleteData(){
-        console.log("this is working"); 
-        firebase.collection('Student Data').doc(docRef.id).delete().then(function (docRef) {
-            console.log("this was deleted ", docRef.id);
+    deleteData(context, index){
+        const { studentList } = context;
+        console.log("This is the  id", studentList[index].id); 
+        var id = studentList[index].id; 
+      
+        firebase.collection('Student Data').doc(id).delete().then(function (id) {
+            console.log("this was deleted ", id);
         })
             .catch(function (error) {
                 console.error("Error adding document: ", error);
@@ -28,7 +35,7 @@ class DataRendered extends Component{
                         <td> {item.course} </td> 
                         <td> {item.grade} </td>
                         <td type="button" className="waves-effect waves-light btn cyan accent-3"> UPDATE </td> 
-                        <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.deleteData.bind(this)}> DELETE </td> 
+                        <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.deleteData.bind(this, context, index)}> DELETE </td> 
                     </tr> 
        
                 )  
