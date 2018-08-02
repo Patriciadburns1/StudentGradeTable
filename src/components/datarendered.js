@@ -11,31 +11,6 @@ class DataRendered extends Component{
      
     }
     
-    // deleteData(context, index){
-    //     const { studentList } = context;
-    //     console.log("This is the  id", studentList[index].id); 
-    //     var id = studentList[index].id; 
-      
-    //     firebase.collection('Student Data').doc(id).delete().then(function (id) {
-    //         console.log("this was deleted ", id);
-    //     })
-    //         .catch(function (error) {
-    //             console.error("Error adding document: ", error);
-    //     });
-
-    // }
-
-    // updateData(context, index){
-    //     const{studentList}= context; 
-    //     var id =studentList[index].id; 
-
-    //     firebase.collection('Student Data').doc(id).update().then(function (id) {
-    //         console.log("this was updated", id);
-    //     })
-    //         .catch(function (error) {
-    //             console.error("this was not updated ", error);
-    //     });
-    // }
 
     render(){
 

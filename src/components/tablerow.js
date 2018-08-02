@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { StudentDataContext } from './studentdata';
 import firebase from '../firebase';
-import Form from './form';
 
 
 
@@ -11,26 +10,23 @@ class TableRow extends Component {
         this.state = {
             updating: false,
             oldForm: {
-                oldStudent: this.props.student.student,
-                oldCourse: this.props.student.course,
-                oldGrade: this.props.student.grade
+                student: this.props.student.student,
+                course: this.props.student.course,
+                grade: this.props.student.grade
             },
             newForm: {
-                course: '',
-                grade: '',
-                student: '',
+                student: this.props.student.student,
+                course: this.props.student.course,
+                grade: this.props.student.grade
             }
 
         }
-        this.handleInputChange=this.handleInputChange.bind(this); 
-        this.handleSubmitButton=this.handleSubmitButton.bind(this); 
-
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmitButton = this.handleSubmitButton.bind(this);
     }
 
     deleteData(context, index) {
         const { studentList } = context;
-        console.log("this is context", context);
-        // console.log("This is the  id", studentList[index].id); 
         var id = studentList[index].id;
 
         firebase.collection('Student Data').doc(id).delete().then(function (id) {
@@ -38,30 +34,18 @@ class TableRow extends Component {
         })
             .catch(function (error) {
                 console.error("Error adding document: ", error);
-            });
-
+        });
     }
 
-
-
     updateData(context, index) {
-
         this.setState({
-            updating: true
+            updating: true,
+            newForm: {
+                ...this.state.oldForm
+            }
         });
 
         console.log("updating");
-
-        // const{studentList}= context; 
-
-        // var id =studentList[index].id; 
-
-        // firebase.collection('Student Data').doc(id).update().then(function (id) {
-        //     console.log("this was updated", id);
-        // })
-        //     .catch(function (error) {
-        //         console.error("this was not updated ", error);
-        // });
     }
 
 
@@ -77,8 +61,11 @@ class TableRow extends Component {
         })
     }
 
-    handleSubmitButton(e) {
-        e.preventDefault();
+    handleSubmitButton(context,index) {
+        // event.preventDefault();
+
+        const { studentList } = context;
+        var id = studentList[index].id;
 
         const { course, student, grade } = this.state.newForm;
         const individualRecord = {
@@ -87,35 +74,64 @@ class TableRow extends Component {
             student: student
         }
 
-        firebase.collection('Student Data').add(individualRecord).then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
+        firebase.collection('Student Data').doc(id).update(individualRecord).then(function (id) {
+            console.log("This was rewritten ", id);
         })
             .catch(function (error) {
-                console.error("Error adding document: ", error);
+                console.error("Error updating the document", error);
             });
+        this.setState({
+                updating:false
+        })
 
-
+        this.setState({
+            oldForm: {
+                ...this.state.newForm
+            },
+        })
     }
 
+    // submitInformationToDataBase(context, id) {
+    //     const { studentList } = context;
 
+    //     var id = studentList[index].id;
+
+    //     firebase.collection('Student Data').doc(id).update().then(function (id) {
+    //         console.log("this was updated", id);
+    //     })
+    //         .catch(function (error) {
+    //             console.error("this was not updated ", error);
+    //         });
+    // }
+
+    cancelChanges(){
+        console.log("this is the cancel button"); 
+        this.setState({
+            updating:false
+        })
+    }
 
 
     render() {
         const { updating } = this.state;
         const { course, student, grade } = this.state.newForm;
-        const { oldCourse, oldStudent, oldGrade } = this.state.oldForm;
 
         if (updating) {
             return (
-                <tr>
-                    <td> <input type='text' name="student" value={student} onChange={this.handleInputChange} /> </td>
-                    <td> <input type='text' name="course" value={course} onChange={this.handleInputChange} /> </td>
-                    <td>  <input type='text' name="grade" value={grade} onChange={this.handleInputChange} /> </td>
-                    <td type="button" className="btn cyan accent-2"> Submit  </td>
-                    <td type="button" className="btn cyan accent-2"> Cancel  </td>
-                </tr>
+                <StudentDataContext.Consumer>{(context) => (
+                    <tr>
+                        <td><input type='text' name="student" value={student} onChange={this.handleInputChange} /> </td>
+                        <td><input type='text' name="course" value={course} onChange={this.handleInputChange} /></td>
+                        <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} /></td>
+                        <td type="button" className="btn cyan accent-2" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
+                        <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
+                    </tr>
+                )}
+                </StudentDataContext.Consumer>
+
             )
         }
+
 
         return (
             <StudentDataContext.Consumer>{(context) => (
