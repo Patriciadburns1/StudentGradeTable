@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import firebase from 'firebase'; 
 import firebase from '../firebase';
+import './assets/css/form.css'
 
 
 class Form extends Component {
@@ -45,7 +46,14 @@ class Form extends Component {
                 console.error("Error adding document: ", error);
         });
 
-
+        this.setState({
+                form: {
+                    course: '',
+                    grade: '',
+                    student: '',
+                }
+            
+        })
     }
 
 
@@ -56,18 +64,18 @@ class Form extends Component {
         
         return (
 
-            <form onSubmit={this.handleSubmitButton.bind(this)}>
-                <div className="input-field">
-                    <label> Student</label>
-                    <input type='text' name="student" value={student} onChange={this.handleInputChange} />
+            <form className="form" onSubmit={this.handleSubmitButton.bind(this)}>
+                <div className="input-field"> 
+                    {/* <label> Student</label> */}
+                    <input type='text' name="student" placeholder="Student" value={student} onChange={this.handleInputChange} />
                 </div>
                 <div className="input-field">
-                    <label> Course </label>
-                    <input type='text' name="course" value={course} onChange={this.handleInputChange} />
+                    {/* <label> Course </label> */}
+                    <input type='text' name="course" placeholder="Course" value={course} onChange={this.handleInputChange} />
                 </div>
                 <div className="input-field">
-                    <label> Grade </label>
-                    <input type='text' name="grade" value={grade} onChange={this.handleInputChange} />
+                    {/* <label> Grade </label> */}
+                    <input type='text' name="grade" placeholder="Grade" value={grade} onChange={this.handleInputChange} />
                 </div>
                 <button className="btn cyan accent-2"> Add Student </button>
             </form>
