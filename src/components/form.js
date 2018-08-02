@@ -58,11 +58,11 @@ class Form extends Component {
 
             <form onSubmit={this.handleSubmitButton.bind(this)}>
                 <div className="input-field">
-                    <label> Name </label>
+                    <label> Student</label>
                     <input type='text' name="student" value={student} onChange={this.handleInputChange} />
                 </div>
                 <div className="input-field">
-                    <label> Student Course </label>
+                    <label> Course </label>
                     <input type='text' name="course" value={course} onChange={this.handleInputChange} />
                 </div>
                 <div className="input-field">
