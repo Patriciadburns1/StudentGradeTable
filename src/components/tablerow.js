@@ -91,18 +91,7 @@ class TableRow extends Component {
         })
     }
 
-    // submitInformationToDataBase(context, id) {
-    //     const { studentList } = context;
 
-    //     var id = studentList[index].id;
-
-    //     firebase.collection('Student Data').doc(id).update().then(function (id) {
-    //         console.log("this was updated", id);
-    //     })
-    //         .catch(function (error) {
-    //             console.error("this was not updated ", error);
-    //         });
-    // }
 
     cancelChanges(){
         console.log("this is the cancel button"); 
@@ -142,8 +131,8 @@ class TableRow extends Component {
                     <td> {this.props.student.student} </td>
                     <td> {this.props.student.course} </td>
                     <td> {this.props.student.grade} </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-edit"></i> </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-trash-alt"></i> </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-edit"></i> </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-trash-alt"></i> </td>
                 </tr>
             )
             }

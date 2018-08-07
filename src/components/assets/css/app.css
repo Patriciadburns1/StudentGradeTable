@@ -1,9 +1,5 @@
 
 .row .col.s3 {
-    /* width: 25%; */
-    /* margin-left: auto; */
-    /* left: auto; */
-    /* right: auto; */
     margin-top: 10%;
 }
 
@@ -17,4 +13,8 @@
 
 .regularMsg{
     color: #919491; 
+}
+
+.studentButtons{
+    margin: 1%; 
 }
