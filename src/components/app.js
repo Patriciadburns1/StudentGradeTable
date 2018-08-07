@@ -23,8 +23,8 @@ class App extends Component{
                     <Route path='/student-list' component={StudentList}/> */}
                     <div className="container"> 
                     <div className="row"> 
-                    <div className="col s9">  <StudentList/>  </div> 
-                    <div className="col s3" > <Form/> </div> 
+                    <div className="col s12 col m9">  <StudentList/>  </div> 
+                    <div className="col s12 col m3 form" > <Form/> </div> 
                     </div> 
                     </div> 
                 </div> 

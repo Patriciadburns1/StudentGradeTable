@@ -6,3 +6,15 @@
     /* right: auto; */
     margin-top: 10%;
 }
+
+.waves-effect waves-light btn cyan accent-3{
+    width: 10%;
+}
+
+.warning{
+    color: red;
+}
+
+.regularMsg{
+    color: #919491; 
+}
