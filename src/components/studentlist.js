@@ -7,13 +7,11 @@ import DataRendered from './datarendered';
 class StudentList extends Component{
 
     render(){
-
-        // need to map through array student list and at each key create a new table td 
         
         return(
            
                 <div> 
-                <h1 className="center"> Student Grade Table </h1> 
+                <h2 className="center"> Student Grade Table </h2> 
                 <div>
         <table>
             <thead>
