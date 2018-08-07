@@ -123,10 +123,13 @@ class TableRow extends Component {
                         <td><input type='text' name="student" value={student} onChange={this.handleInputChange} /> </td>
                         <td><input type='text' name="course" value={course} onChange={this.handleInputChange} /></td>
                         <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} /></td>
-                        <td type="button" className="btn cyan accent-2" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
+                        <td type="button" className="btn" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
                         <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
                     </tr>
                 )}
+               
+
+
                 </StudentDataContext.Consumer>
 
             )
@@ -139,8 +142,8 @@ class TableRow extends Component {
                     <td> {this.props.student.student} </td>
                     <td> {this.props.student.course} </td>
                     <td> {this.props.student.grade} </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> UPDATE </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> DELETE </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-edit"></i> </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-trash-alt"></i> </td>
                 </tr>
             )
             }
