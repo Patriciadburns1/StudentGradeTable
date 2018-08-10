@@ -3,6 +3,7 @@
     margin-top: 10%;
 }
 
+
 .waves-effect waves-light btn cyan accent-3{
     width: 10%;
 }
@@ -15,6 +16,14 @@
     color: #919491; 
 }
 
-.studentButtons{
-    margin: 1%; 
+/* .studentButtons{
+    margin: 2%; 
+} */
+
+.center{
+    font-size: 1.5em;
+}
+
+.row .col.s5 {
+    margin: 2%; 
 }

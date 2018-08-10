@@ -21,9 +21,7 @@ class StudentData extends Component {
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
-            // console.log("our snapshot", snapshot);
             var studentList = [];
-            // snapshot.key;
             snapshot.forEach(((doc, key) => {
                 console.log("doc", doc.data());
                 const data = doc.data();
@@ -38,9 +36,6 @@ class StudentData extends Component {
 
     }
 
-    // sendFormtoDataBase(){
-
-    // }
 
     render() {
         return (
