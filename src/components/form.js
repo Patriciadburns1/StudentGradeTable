@@ -29,7 +29,7 @@ class Form extends Component {
                 msgClass: "regularMsg",
                 valid: false,
             },
-            submitMsg: "",
+           
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         
@@ -37,7 +37,8 @@ class Form extends Component {
 
     handleInputChange(event) {
        
-        const regexCourse = /^[a-zA-Z]{1,10}$/; 
+        // const regexCourse = /^[a-zA-Z]{1,10}$/; 
+        const regexCourse=/\b(Math|Science|Art|History)\b/; 
         const regexStudent = /^[a-zA-Z]{1,10}$/; 
         const regexGrade = /^[1-9]?[0-9]{1}$|^100$/;
         const { value, name } = event.target;
@@ -50,7 +51,7 @@ class Form extends Component {
                     form: { ...form },
                     
                     studentCheck: {
-                        msg: "this is a valid student name",
+                        msg: "Valid Name",
                         msgClass: "regularMsg",
                         valid: true,
                     }
@@ -60,7 +61,7 @@ class Form extends Component {
                     form: { ...form },
                     
                     studentCheck: {
-                        msg: "Please enter a valid name",
+                        msg: "Invalid Name",
                         msgClass: "warning",
                         valid: false,
                     }
@@ -73,7 +74,7 @@ class Form extends Component {
                     form: { ...form },
                     
                     courseCheck: {
-                        msg: "valid course name",
+                        msg: "Math|Science|Art|History",
                         msgClass: "regularMsg",
                         valid: true,
                     }
@@ -83,7 +84,7 @@ class Form extends Component {
                     form: { ...form },
                     
                     courseCheck: {
-                        msg: "Please enter only ten characters long",
+                        msg: "choose Math|Science|Art|History",
                         msgClass: "warning",
                         valid: false,
                     }
@@ -96,7 +97,7 @@ class Form extends Component {
                     
                     form: { ...form },
                     gradeCheck: {
-                        msg: "this is a valid grade",
+                        msg: "Valid Grade",
                         msgClass: "regularMsg",
                         valid: true,
                     },
@@ -107,7 +108,7 @@ class Form extends Component {
                     form: { ...form },
                     
                     gradeCheck: {
-                        msg: "Please enter a number between 0 - 100",
+                        msg: "Enter a # between 0-100",
                         msgClass: "warning",
                         valid: false,
                     },

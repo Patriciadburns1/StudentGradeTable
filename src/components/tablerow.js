@@ -18,7 +18,22 @@ class TableRow extends Component {
                 student: this.props.student.student,
                 course: this.props.student.course,
                 grade: this.props.student.grade
-            }
+            },
+            courseCheck: {
+                msg: "",
+                msgClass: "regularMsg",
+                valid: true,
+            },
+            studentCheck: {
+                msg: "",
+                msgClass: "regularMsg",
+                valid: true,
+            },
+            gradeCheck: {
+                msg: "",
+                msgClass: "regularMsg",
+                valid: true,
+            },
 
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -44,30 +59,103 @@ class TableRow extends Component {
                 ...this.state.oldForm
             }
         });
-
-        console.log("updating");
     }
 
 
     handleInputChange(event) {
+        // const regexCourse = /^[a-zA-Z]{1,10}$/; 
+        const regexCourse=/\b(Math|Science|Art|History)\b/; 
+        const regexStudent = /^[a-zA-Z]{1,10}$/; 
+        const regexGrade = /^[1-9]?[0-9]{1}$|^100$/;
+      
+
         const { value, name } = event.target;
         const { newForm } = this.state;
 
         newForm[name] = value;
 
-        this.setState({
-            newForm: { ...newForm },
+        if(name === 'student'){
+            if (regexStudent.test(value)) {
+                this.setState({
+                    newForm: { ...newForm },
+                    
+                    studentCheck: {
+                        msg: "Valid Name",
+                        msgClass: "regularMsg",
+                        valid: true,
+                    }
+                });
+            } else {
+                this.setState({
+                    newForm: { ...newForm },
+                    
+                    studentCheck: {
+                        msg: "Invalid name",
+                        msgClass: "warning",
+                        valid: false,
+                    }
+                })
+            }
+        } 
+        else if(name === 'course'){
+            if (regexCourse.test(value)) {
+                this.setState({
+                    newForm: { ...newForm },
+                    
+                    courseCheck: {
+                        msg: "Math|Science|Art|History",
+                        msgClass: "regularMsg",
+                        valid: true,
+                    }
+                },);
+            } else {
+                this.setState({
+                    newForm: { ...newForm },
+                    
+                    courseCheck: {
+                        msg: "choose Math|Science|Art|History",
+                        msgClass: "warning",
+                        valid: false,
+                    }
+                })
+            }         
+        } 
+        else if(name === 'grade'){
+            if (regexGrade.test(value)) {
+                this.setState({
+                    newForm: { ...newForm },
+                    gradeCheck: {
+                        msg: "Valid Grade",
+                        msgClass: "regularMsg",
+                        valid: true,
+                    },
+                });
+            }
+            else {
+                this.setState({
+                    newForm: { ...newForm },
+                    
+                    gradeCheck: {
+                        msg: "Enter a # between 0-100",
+                        msgClass: "warning",
+                        valid: false,
+                    },
+                }) 
+            }
 
-        })
+        }
     }
 
     handleSubmitButton(context,index) {
-        // event.preventDefault();
 
+        if(this.state.courseCheck.valid === false || this.state.studentCheck.valid === false || this.state.gradeCheck.valid === false){
+            return; 
+        }
         const { studentList } = context;
         var id = studentList[index].id;
 
         const { course, student, grade } = this.state.newForm;
+
         const individualRecord = {
             course: course,
             grade: grade,
@@ -94,7 +182,6 @@ class TableRow extends Component {
 
 
     cancelChanges(){
-        console.log("this is the cancel button"); 
         this.setState({
             updating:false
         })
@@ -103,22 +190,23 @@ class TableRow extends Component {
 
     render() {
         const { updating } = this.state;
-        const { course, student, grade } = this.state.newForm;
+        const { course, student, grade } = this.state.newForm; 
 
         if (updating) {
             return (
                 <StudentDataContext.Consumer>{(context) => (
                     <tr>
                         <td><input type='text' name="student" value={student} onChange={this.handleInputChange} /> </td>
+                        { this.state.studentCheck.msg ? <td className={this.state.studentCheck.msgClass}>{this.state.studentCheck.msg}</td> : null}
                         <td><input type='text' name="course" value={course} onChange={this.handleInputChange} /></td>
+                        { this.state.courseCheck.msg ? <td className={this.state.courseCheck.msgClass}>{this.state.courseCheck.msg}</td> : null}   
                         <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} /></td>
+                        { this.state.gradeCheck.msg ? <td className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</td> : null}
                         <td type="button" className="btn" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
                         <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
                     </tr>
                 )}
                
-
-
                 </StudentDataContext.Consumer>
 
             )
