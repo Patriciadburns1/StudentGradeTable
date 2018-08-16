@@ -1,3 +1,17 @@
 .form {
     margin-top: 15%;
 }
+
+table{
+    width: 100%; 
+    display: table; 
+    table-layout: fixed; 
+}
+
+td{
+    vertical-align: top; 
+}
+
+.btn{
+    margin-bottom: 10px;
+}
