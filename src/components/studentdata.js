@@ -6,24 +6,43 @@ export const StudentDataContext = createContext();
 
 
 class StudentData extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            studentList:[]
-         
+            studentList:[],
+            showModal: false,
+            deleteIndex: null,
+            openModal: this.openModal.bind(this),
+            closeModal: this.closeModal.bind(this)
         }
+        
     }
 
-    componentDidUpdate() {
-        console.log("Our updated state with students on component did update", this.state.studentList);
+    openModal(context, id){
+    
+        this.setState({
+            showModal:true,
+            deleteIndex: id
+        })
     }
+
+    closeModal(){
+        this.setState({
+            showModal: false,
+            deleteIndex: null
+        })
+    }
+
+    // componentDidUpdate() {
+    //     console.log("Our updated state with students on component did update", this.state.studentList);
+    // }
 
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
             var studentList = [];
             snapshot.forEach(((doc, key) => {
-                console.log("doc", doc.data());
+                // console.log("doc", doc.data());
                 const data = doc.data();
                 data.id = doc.id;
                 studentList.push(data);
