@@ -6,12 +6,33 @@ export const StudentDataContext = createContext();
 
 
 class StudentData extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            studentList:[]
-         
+            studentList:[],
+            showModal: false,
+            deleteIndex: null,
+            openModal: this.openModal.bind(this),
+            closeModal: this.closeModal.bind(this)
         }
+        
+    }
+
+    openModal(context, id){
+    
+        this.setState({
+            showModal:true,
+            deleteIndex: id
+        })
+
+        console.log("this is props array index",this.state.deleteIndex); 
+    }
+
+    closeModal(){
+        this.setState({
+            showModal: false,
+            deleteIndex: null
+        })
     }
 
     componentDidUpdate() {
