@@ -8,6 +8,7 @@ class TableRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            allowCancel: false, 
             updating: false,
             oldForm: {
                 student: this.props.student.student,
@@ -103,7 +104,7 @@ class TableRow extends Component {
                     newForm: { ...newForm },
                     
                     courseCheck: {
-                        msg: "Math|Science|Art|History",
+                        msg: "Math | Science |Art | History",
                         msgClass: "regularMsg",
                         valid: true,
                     }
@@ -113,7 +114,7 @@ class TableRow extends Component {
                     newForm: { ...newForm },
                     
                     courseCheck: {
-                        msg: "choose Math|Science|Art|History",
+                        msg: "choose Math | Science| Art| History",
                         msgClass: "warning",
                         valid: false,
                     }
@@ -196,12 +197,15 @@ class TableRow extends Component {
             return (
                 <StudentDataContext.Consumer>{(context) => (
                     <tr>
-                        <td><input type='text' name="student" value={student} onChange={this.handleInputChange} /> </td>
-                        { this.state.studentCheck.msg ? <td className={this.state.studentCheck.msgClass}>{this.state.studentCheck.msg}</td> : null}
-                        <td><input type='text' name="course" value={course} onChange={this.handleInputChange} /></td>
-                        { this.state.courseCheck.msg ? <td className={this.state.courseCheck.msgClass}>{this.state.courseCheck.msg}</td> : null}   
-                        <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} /></td>
-                        { this.state.gradeCheck.msg ? <td className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</td> : null}
+                        <td><input type='text' name="student" value={student} onChange={this.handleInputChange} /> 
+                        { this.state.studentCheck.msg ? <div className={this.state.studentCheck.msgClass}>{this.state.studentCheck.msg}</div> : null} 
+                        </td>
+                        <td><input type='text' name="course" value={course} onChange={this.handleInputChange} />
+                        { this.state.courseCheck.msg ? <div className={this.state.courseCheck.msgClass}>{this.state.courseCheck.msg}</div> : null}   
+                        </td>
+                        <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} />
+                        { this.state.gradeCheck.msg ? <div className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</div> : null}
+                        </td>
                         <td type="button" className="btn" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
                         <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
                     </tr>
@@ -219,8 +223,12 @@ class TableRow extends Component {
                     <td> {this.props.student.student} </td>
                     <td> {this.props.student.course} </td>
                     <td> {this.props.student.grade} </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-edit"></i> </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> <i className="far fa-trash-alt"></i> </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> 
+                        <i className="far fa-edit"></i> 
+                    </td>
+                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> 
+                        <i className="far fa-trash-alt"></i> 
+                    </td>
                 </tr>
             )
             }
