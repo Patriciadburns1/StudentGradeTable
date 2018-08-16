@@ -235,8 +235,7 @@ class TableRow extends Component {
                         <i className="far fa-edit"></i> 
                     </td>
                     <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" 
-                    // onClick={this.deleteData.bind(this, context, this.props.arrayIndex)}> 
-                    onClick={()=>context.openModal( context, this.props.arrayIndex )}> 
+                    onClick={()=>context.openModal( context, this.props.arrayIndex)}> 
                         <i className="far fa-trash-alt"></i> 
                     </td>
                 </tr>

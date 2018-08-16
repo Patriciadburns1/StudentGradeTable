@@ -20,10 +20,7 @@ class App extends Component{
             <StudentDataContext.Consumer> 
                 {(context) => (
                 <div>
-                    {console.log('SHOW MODAL:', context.showModal)}
                     <Nav/> 
-                     {/* <Route exact path='/' component={HomePage}/> 
-                    <Route path='/student-list' component={StudentList}/> */}
                     {context.showModal? <Modal/> : null} 
                     <div className="container"> 
                     <div className="row"> 

@@ -33,7 +33,15 @@ td{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0,0,0,.4);
-    /* display: none;  */
     display: block; 
     z-index: 2;
+}
+
+.buttonsForModal{
+    margin-top: 10%; 
+}
+
+.cancel{
+    padding-right: 37px;
+    justify-content: center; 
 }

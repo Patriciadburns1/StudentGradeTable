@@ -12,12 +12,8 @@ class Modal extends Component {
 
 
   deleteData(context, index){
-    
     const { studentList } = context;
     const {deleteIndex} = context; 
-    console.log("this is student student list", studentList); 
-    console.log("this is delete index", deleteIndex); 
-    // var id = studentList[index].id;
     var id = studentList[deleteIndex].id; 
 
     firebase.collection('Student Data').doc(id).delete().then(function (id) {
@@ -26,6 +22,7 @@ class Modal extends Component {
         .catch(function (error) {
             console.error("Error adding document: ", error);
     });
+    context.closeModal(); 
     }
 
   render(){
@@ -33,10 +30,17 @@ class Modal extends Component {
         <StudentDataContext.Consumer >{(context)=>(
             <div className="modalShadow">
                 <div className="modalBody"> 
-                {/* <button className="btn cyan accent-2" onClick={this.deleteData.bind(this,context,index)}> Confirm Delete</button> */}
-                <button className="btn cyan accent-2" onClick={this.deleteData.bind(this,context,context.deleteIndex)}> Confirm Delete</button>
-                <button className="btn cyan accent-2" onClick={ ()=> {context.closeModal(context)}} > Cancel Delete </button>
-                </div>   
+                    <h2 className="center"> Are you sure you want to delete this ? </h2> 
+                <div className="center buttonsForModal">
+                    <div> 
+                        <button className="center btn cyan accent-2" onClick={this.deleteData.bind(this,context,context.deleteIndex)}> 
+                        Confirm </button>
+                    </div> 
+                    <div> 
+                        <button className="cancel center btn cyan accent-2" onClick={ ()=> {context.closeModal(context)}} > Cancel </button>
+                    </div> 
+                </div>
+                </div> 
             </div> 
           )
         }

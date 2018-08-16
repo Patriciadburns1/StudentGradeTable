@@ -24,8 +24,6 @@ class StudentData extends Component {
             showModal:true,
             deleteIndex: id
         })
-
-        console.log("this is props array index",this.state.deleteIndex); 
     }
 
     closeModal(){
@@ -35,16 +33,16 @@ class StudentData extends Component {
         })
     }
 
-    componentDidUpdate() {
-        console.log("Our updated state with students on component did update", this.state.studentList);
-    }
+    // componentDidUpdate() {
+    //     console.log("Our updated state with students on component did update", this.state.studentList);
+    // }
 
 
     componentDidMount() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
             var studentList = [];
             snapshot.forEach(((doc, key) => {
-                console.log("doc", doc.data());
+                // console.log("doc", doc.data());
                 const data = doc.data();
                 data.id = doc.id;
                 studentList.push(data);

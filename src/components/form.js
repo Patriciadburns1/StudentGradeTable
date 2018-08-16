@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import firebase from 'firebase'; 
 import firebase from '../firebase';
 import './assets/css/form.css';
 
@@ -36,8 +35,6 @@ class Form extends Component {
     }
 
     handleInputChange(event) {
-       
-        // const regexCourse = /^[a-zA-Z]{1,10}$/; 
         const regexCourse=/\b(Math|Science|Art|History)\b/; 
         const regexStudent = /^[a-zA-Z]{1,10}$/; 
         const regexGrade = /^[1-9]?[0-9]{1}$|^100$/;
