@@ -46,7 +46,9 @@ class TableRow extends Component {
         this.setState({
             updating: true,
             newForm: {
-                ...this.state.oldForm
+                student: this.props.student.student,
+                course: this.props.student.course,
+                grade: this.props.student.grade
             }
         });
         
@@ -195,7 +197,6 @@ class TableRow extends Component {
     render() {
         const { updating } = this.state;
         const { course, student, grade } = this.state.newForm; 
-        debugger;
         if (updating) {
             return (
                 <StudentDataContext.Consumer>{(context) => (
