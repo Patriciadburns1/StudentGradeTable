@@ -37,7 +37,6 @@ class Form extends Component {
     }
 
     handleInputChange(event) {
-       
         // const regexCourse = /^[a-zA-Z]{1,10}$/; 
         const regexCourse=/\b(Math|Science|Art|History)\b/; 
         const regexStudent = /^[a-zA-Z]{1,10}$/; 
@@ -123,7 +122,6 @@ class Form extends Component {
     }
 
     handleSubmitButton(e, context) {
-        debugger;
         e.preventDefault();
         const { course, student, grade } = this.state.form;
         if(this.state.courseCheck.valid === false || this.state.studentCheck.valid === false || this.state.gradeCheck.valid === false){
@@ -180,7 +178,6 @@ class Form extends Component {
         return(
             <StudentDataContext.Consumer>{(context)=>(
                 <form className="form" onSubmit={(event) => {
-                    debugger;
                     this.handleSubmitButton.call(this, event);
                     this.fetchData(context);
                 }}>

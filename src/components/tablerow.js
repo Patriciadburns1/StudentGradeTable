@@ -169,9 +169,6 @@ class TableRow extends Component {
             oldForm: {
                 ...this.state.newForm
             }
-        //     newform:{
-        //         individualRecord
-        //     }
         })
 
     }
