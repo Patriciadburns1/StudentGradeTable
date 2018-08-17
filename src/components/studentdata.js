@@ -13,7 +13,8 @@ class StudentData extends Component {
             showModal: false,
             deleteIndex: null,
             openModal: this.openModal.bind(this),
-            closeModal: this.closeModal.bind(this)
+            closeModal: this.closeModal.bind(this),
+            fetchStudentData: this.fetchStudentData.bind(this)
         }
         
     }
@@ -39,10 +40,27 @@ class StudentData extends Component {
 
 
     componentDidMount() {
+
+        this.fetchStudentData();
+        // firebase.collection('Student Data').onSnapshot(snapshot => {
+        //     var studentList = [];
+        //     snapshot.forEach(((doc, key) => {
+        //         // console.log("doc", doc.data());
+        //         const data = doc.data();
+        //         data.id = doc.id;
+        //         studentList.push(data);
+               
+        //     }));
+        //     this.setState({
+        //         studentList
+        //     });
+        // });
+    }
+
+    fetchStudentData() {
         firebase.collection('Student Data').onSnapshot(snapshot => {
             var studentList = [];
             snapshot.forEach(((doc, key) => {
-                // console.log("doc", doc.data());
                 const data = doc.data();
                 data.id = doc.id;
                 studentList.push(data);
@@ -52,7 +70,6 @@ class StudentData extends Component {
                 studentList
             });
         });
-
     }
 
 

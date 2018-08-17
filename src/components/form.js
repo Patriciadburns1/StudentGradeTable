@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import firebase from 'firebase'; 
+import { StudentDataContext } from './studentdata';
 import firebase from '../firebase';
 import './assets/css/form.css';
 
@@ -35,6 +37,7 @@ class Form extends Component {
     }
 
     handleInputChange(event) {
+        // const regexCourse = /^[a-zA-Z]{1,10}$/; 
         const regexCourse=/\b(Math|Science|Art|History)\b/; 
         const regexStudent = /^[a-zA-Z]{1,10}$/; 
         const regexGrade = /^[1-9]?[0-9]{1}$|^100$/;
@@ -118,7 +121,7 @@ class Form extends Component {
 
     }
 
-    handleSubmitButton(e) {
+    handleSubmitButton(e, context) {
         e.preventDefault();
         const { course, student, grade } = this.state.form;
         if(this.state.courseCheck.valid === false || this.state.studentCheck.valid === false || this.state.gradeCheck.valid === false){
@@ -163,6 +166,9 @@ class Form extends Component {
         })
     }
 
+    fetchData(context) {
+        context.fetchStudentData();
+    }
 
 
 
@@ -170,21 +176,27 @@ class Form extends Component {
         const { course, student, grade } = this.state.form;
 
         return(
-            <form className="form" onSubmit={this.handleSubmitButton.bind(this)}>
-            <div className="input-field">
-                <input type='text' name="student" placeholder="Student" value={student} onChange={this.handleInputChange} />
-                { this.state.studentCheck.msg ? <div className={this.state.studentCheck.msgClass}>{this.state.studentCheck.msg}</div> : null}
-            </div>
-            <div className="input-field">
-                <input type='text' name="course" placeholder="Course" value={course} onChange={this.handleInputChange} />
-                { this.state.courseCheck.msg ? <div className={this.state.courseCheck.msgClass}>{this.state.courseCheck.msg}</div> : null}   
-            </div>
-            <div className="input-field">
-                <input type='text' name="grade" placeholder="Grade" value={grade} onChange={this.handleInputChange} />
-                { this.state.gradeCheck.msg ? <div className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</div> : null}
-            </div>
-            <button className="btn cyan accent-2"> Add Student </button>
-        </form>
+            <StudentDataContext.Consumer>{(context)=>(
+                <form className="form" onSubmit={(event) => {
+                    this.handleSubmitButton.call(this, event);
+                    this.fetchData(context);
+                }}>
+                    <div className="input-field">
+                        <input type='text' name="student" placeholder="Student" value={student} onChange={this.handleInputChange} />
+                        { this.state.studentCheck.msg ? <div className={this.state.studentCheck.msgClass}>{this.state.studentCheck.msg}</div> : null}
+                    </div>
+                    <div className="input-field">
+                        <input type='text' name="course" placeholder="Course" value={course} onChange={this.handleInputChange} />
+                        { this.state.courseCheck.msg ? <div className={this.state.courseCheck.msgClass}>{this.state.courseCheck.msg}</div> : null}   
+                    </div>
+                    <div className="input-field">
+                        <input type='text' name="grade" placeholder="Grade" value={grade} onChange={this.handleInputChange} />
+                        { this.state.gradeCheck.msg ? <div className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</div> : null}
+                    </div>
+                    <button className="btn cyan accent-2"> Add Student </button>
+                </form>
+            )}
+            </StudentDataContext.Consumer> 
         )
         
     }

@@ -42,30 +42,20 @@ class TableRow extends Component {
         this.handleClickforDeleteButton = this.handleClickforDeleteButton.bind(this); 
     }
 
-    // deleteData(context, index) {
-    //     const { studentList } = context;
-    //     var id = studentList[index].id;
-
-    //     firebase.collection('Student Data').doc(id).delete().then(function (id) {
-    //         console.log("this was deleted ", id);
-    //     })
-    //         .catch(function (error) {
-    //             console.error("Error adding document: ", error);
-    //     });
-    // }
-
     updateData(context, index) {
         this.setState({
             updating: true,
             newForm: {
-                ...this.state.oldForm
+                student: this.props.student.student,
+                course: this.props.student.course,
+                grade: this.props.student.grade
             }
         });
+        
     }
 
 
     handleInputChange(event) {
-        // const regexCourse = /^[a-zA-Z]{1,10}$/; 
         const regexCourse=/\b(Math|Science|Art|History)\b/; 
         const regexStudent = /^[a-zA-Z]{1,10}$/; 
         const regexGrade = /^[1-9]?[0-9]{1}$|^100$/;
@@ -146,6 +136,7 @@ class TableRow extends Component {
             }
 
         }
+
     }
 
     handleSubmitButton(context,index) {
@@ -177,8 +168,9 @@ class TableRow extends Component {
         this.setState({
             oldForm: {
                 ...this.state.newForm
-            },
+            }
         })
+
     }
 
     handleClickforDeleteButton(){
@@ -191,15 +183,17 @@ class TableRow extends Component {
 
     cancelChanges(){
         this.setState({
-            updating:false
-        })
+            updating: false,
+            newForm: {
+                ...this.state.oldForm
+            }
+        });
     }
 
 
     render() {
         const { updating } = this.state;
         const { course, student, grade } = this.state.newForm; 
-
         if (updating) {
             return (
                 <StudentDataContext.Consumer>{(context) => (
@@ -217,14 +211,13 @@ class TableRow extends Component {
                         <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
                     </tr>
                 )}
-               
                 </StudentDataContext.Consumer>
-
             )
         }
 
 
         return (
+          
             <StudentDataContext.Consumer>{(context) => (
                 <tr>
                     <td> {this.props.student.student} </td>

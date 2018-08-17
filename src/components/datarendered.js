@@ -6,14 +6,10 @@ import TableRow from './tablerow';
 class DataRendered extends Component{
 
     constructor(props){
-        super(props);
-       
-     
+        super(props);  
     }
     
-
     render(){
-
         return(
             <StudentDataContext.Consumer>{(context)=>(
             context.studentList.map((item, index)=>{
