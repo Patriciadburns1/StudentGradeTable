@@ -30,10 +30,10 @@ class Modal extends Component {
         <StudentDataContext.Consumer >{(context)=>(
             <div className="modalShadow">
                 <div className="modalBody"> 
-                    <h2 className="center"> Are you sure you want to delete this ? </h2> 
+                    <h2 className="center modalText"> Are you sure you want to delete this ? </h2> 
                 <div className="center buttonsForModal">
                     <div> 
-                        <button className="center btn cyan accent-2" onClick={this.deleteData.bind(this,context,context.deleteIndex)}> 
+                        <button className="center btn cyan darken-4" onClick={this.deleteData.bind(this,context,context.deleteIndex)}> 
                         Confirm </button>
                     </div> 
                     <div> 
