@@ -11,7 +11,7 @@ class StudentList extends Component{
         return(
            
                 <div> 
-                <h2 className="center"> Student Grade Table </h2> 
+                <h2 className="studentGradeHeader"> Student Grade Table </h2> 
                 <div>
         <table>
             <thead>

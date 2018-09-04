@@ -47,7 +47,18 @@ td{
 }
 
 .form {
-    margin-top: 7.5%;
+    margin-top: 15%;
+}
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px){
+    .modalBody{
+        top: 37%; 
+        min-height: 31%;
+    }
+   
 }
 
 @media only screen 
@@ -76,4 +87,5 @@ td{
     }
 
 }
+
 
