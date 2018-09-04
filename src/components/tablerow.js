@@ -207,7 +207,7 @@ class TableRow extends Component {
                         <td><input type='text' name="grade" value={grade} onChange={this.handleInputChange} />
                         { this.state.gradeCheck.msg ? <div className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</div> : null}
                         </td>
-                        <td type="button" className="btn" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
+                        <td type="button" className="btn cyan darken-4" onClick={this.handleSubmitButton.bind(this, context, this.props.arrayIndex)}> Submit </td>
                         <td type="button" className="btn cyan accent-2" onClick={this.cancelChanges.bind(this)}> Cancel </td>
                     </tr>
                 )}
@@ -227,7 +227,7 @@ class TableRow extends Component {
                     onClick={this.updateData.bind(this, context, this.props.arrayIndex)}> 
                         <i className="far fa-edit"></i> 
                     </td>
-                    <td type="button" className="waves-effect waves-light btn cyan accent-3 col s5 studentButtons" 
+                    <td type="button" className="waves-effect waves-light btn cyan accent-4 col s5 studentButtons" 
                     onClick={()=>context.openModal( context, this.props.arrayIndex)}> 
                         <i className="far fa-trash-alt"></i> 
                     </td>

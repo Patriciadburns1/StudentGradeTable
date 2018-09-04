@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import firebase from 'firebase'; 
 import { StudentDataContext } from './studentdata';
 import firebase from '../firebase';
 import './assets/css/form.css';

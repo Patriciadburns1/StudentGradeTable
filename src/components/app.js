@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
+import 'materialize-css/dist/css/materialize.min.css'; 
 import './assets/css/app.css';
 import StudentData, {StudentDataContext} from './studentdata'; 
-import HomePage from './homepage'; 
-import { Route } from 'react-router-dom';
 import StudentList from './studentlist'; 
 import Nav from './nav'; 
 import Form from './form'; 
