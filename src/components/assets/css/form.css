@@ -22,7 +22,7 @@ td{
     left: 50%;
     top: 50%;
     min-height: 50%;
-    min-width: 50%;
+    min-width: 70%;
     transform: translate( -50%, -50%);
 }
 
@@ -51,8 +51,10 @@ td{
 }
 
 .modalText{
-    font-size: 2em; 
+    font-size: 1.75em; 
 }
+
+
 
 
 @media only screen 
