@@ -193,7 +193,7 @@ class Form extends Component {
                         <input type='text' name="grade" placeholder="Grade" value={grade} onChange={this.handleInputChange} />
                         { this.state.gradeCheck.msg ? <div className={this.state.gradeCheck.msgClass}>{this.state.gradeCheck.msg}</div> : null}
                     </div>
-                    <button className="btn cyan accent-2"> Add Student </button>
+                    <button className="btn teal accent-3"> Add Student </button>
                 </form>
             )}
             </StudentDataContext.Consumer> 

@@ -45,3 +45,47 @@ td{
     padding-right: 37px;
     justify-content: center; 
 }
+
+.form {
+    margin-top: 15%;
+}
+
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px){
+    .modalBody{
+        top: 37%; 
+        min-height: 31%;
+    }
+   
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 640px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+    .form {
+        margin-top: 5%;
+    }
+
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 640px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation:portrait) {
+
+    .form {
+        margin-top: 5%;
+    }
+    .btn{
+        padding: 0 1rem; 
+    }
+
+}
+
+
